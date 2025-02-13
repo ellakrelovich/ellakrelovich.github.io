@@ -1,0 +1,55 @@
+body{
+    width: 210mm;
+    height: 297mm;
+    margin: 20px auto;
+    position: relative;
+    background: url("purpleBowTie.png") no-repeat top 60px left 630px, url("blueBow.jpg") no-repeat top 150px left 520px, url("yellowBow.jpg") no-repeat top 165px right 460px, url("bunniesEating.png") no-repeat top center; 
+    background-size: 50px 50px, 75px 75px, 75px 75px, 700px 350px;
+
+}
+
+  h2{
+    position: absolute;
+    top: 0.1mm;
+    left: 20mm;
+    height: 60px;
+    width: 200px;
+    border-radius: 25px;
+    background-color: #a67ecf;
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+  }
+
+  .itemDescription{
+    position: absolute;
+    top: 25mm;
+    left: 20mm;
+    height: 200px;
+    width: 200px;
+    border-radius: 25px;
+    background-color: #a67ecf;
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+  }
+  .itemDescription h4{
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+  }
+
+  .orderNow{
+    position: relative;
+    top: 230px;
+    left: 140mm;
+    height: 80px;
+    width: 200px;
+    border-radius: 25px;
+    background-color: #7ec4cf;
+    vertical-align: middle;
+    text-align: center;
+    color: white;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+  }
