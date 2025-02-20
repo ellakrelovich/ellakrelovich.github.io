@@ -1,0 +1,335 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital@0;1&display=swap");
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: #7b7b7b;
+	background-image: radial-gradient(#383838 5px, transparent 5px),
+		radial-gradient(#212121 5px, transparent 5px);
+	background-size: 20px 20px;
+	background-position: 0 0, 10px 10px;
+	font-family: "Crimson Text", serif;
+	color: #090909;
+	padding: 2rem;
+}
+
+.container {
+	max-width: 800px;
+	margin: 2rem auto;
+	padding: 3rem;
+	background: #ababab;
+	border-radius: 2px;
+	box-shadow: 0 0 0 1px #1d192a, 0 0 0 15px #cbcbcb, 0 0 0 16px #1c1c1c,
+		5px 5px 15px rgba(0, 0, 0, 0.2);
+	position: relative;
+	overflow: hidden;
+}
+
+.container::before,
+.container::after {
+	content: "";
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' fill='none' stroke='%238b4513' stroke-width='2'%3E%3Cpath d='M20,50 Q50,20 80,50 Q50,80 20,50'/%3E%3C/svg%3E");
+	opacity: 0.1;
+	z-index: 0;
+}
+
+.container::before {
+	top: -50px;
+	left: -50px;
+	transform: rotate(45deg);
+}
+
+.container::after {
+	bottom: -50px;
+	right: -50px;
+	transform: rotate(225deg);
+}
+
+.title {
+	text-align: center;
+	margin-bottom: 2rem;
+	color: #231a36;
+	font-family: "Playfair Display", serif;
+	font-size: 2.5rem;
+	font-weight: 700;
+	text-shadow: 2px 2px 0px #ababab, 3px 3px 0px #231a36;
+	position: relative;
+}
+
+.title::after {
+	content: "♪ ♫ ♪";
+	display: block;
+	font-size: 1.5rem;
+	color: #231a36;
+	margin-top: 0.5rem;
+	text-shadow: none;
+}
+
+.progression-display {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1rem;
+	min-height: 120px;
+	background: #ababab;
+	border: 2px solid #231a36;
+	border-radius: 2px;
+	padding: 1.5rem;
+	margin-bottom: 1.5rem;
+	position: relative;
+}
+
+.progression-display::before {
+	content: "";
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	right: 10px;
+	bottom: 10px;
+	border: 1px solid #231a36;
+	pointer-events: none;
+}
+
+.chord-box {
+	font-family: "Playfair Display", serif;
+	font-size: 2rem;
+	font-weight: bold;
+	padding: 1rem 1.5rem;
+	background: #ababab;
+	color: #231a36;
+	border: 2px solid #231a36;
+	border-radius: 2px;
+	box-shadow: 3px 3px 0 #231a36;
+	transition: all 0.3s ease;
+	cursor: pointer;
+	position: relative;
+}
+
+.chord-box:hover {
+	background: rgb(78, 78, 77);
+	transform: translate(-2px, -2px);
+	box-shadow: 5px 5px 0 #231a36;
+}
+
+.chord-box.playing {
+	background: #231a36;
+	color: #fff9eb;
+	transform: translate(3px, 3px);
+	box-shadow: none;
+}
+
+.empty-message {
+	color: #231a36;
+	font-style: italic;
+	font-size: 1.2rem;
+}
+
+.mood-description {
+	text-align: center;
+	color: #231a36;
+	font-size: 1.2rem;
+	font-style: italic;
+	margin-bottom: 2rem;
+}
+
+.chord-section {
+	margin-bottom: 2rem;
+	position: relative;
+}
+
+.section-title {
+	font-family: "Playfair Display", serif;
+	margin-bottom: 1rem;
+	color: #231a36;
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-align: center;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.section-title::before,
+.section-title::after {
+	content: "~";
+	margin: 0 1rem;
+	color: #ababab;
+	font-size: 2rem;
+}
+
+.chord-buttons {
+	display: flex;
+	gap: 0.8rem;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding: 1rem;
+	background: #ababab;
+	border: 1px solid #231a36;
+	border-radius: 2px;
+}
+
+.chord-btn {
+	font-family: "Playfair Display", serif;
+	padding: 0.8rem 1.5rem;
+	border: 2px solid #231a36;
+	border-radius: 2px;
+	background: #ababab;
+	color: #231a36;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	font-size: 1.2rem;
+	position: relative;
+	box-shadow: 2px 2px 0 #231a36;
+}
+
+.chord-btn:hover:not(:disabled) {
+	background: #ababab;
+	transform: translate(-2px, -2px);
+	box-shadow: 4px 4px 0 #231a36;
+}
+
+.chord-btn:disabled {
+	background: #ababab;
+	color: #231a36;
+	border-color: #231a36;
+	cursor: not-allowed;
+	box-shadow: none;
+}
+
+.bpm-control {
+	margin: 2rem 0;
+	text-align: center;
+	padding: 1.5rem;
+	background: #ababab;
+	border: 1px solid #231a36;
+	border-radius: 2px;
+}
+
+.bpm-value {
+	font-family: "Playfair Display", serif;
+	font-size: 1.3rem;
+	font-weight: bold;
+	color: #231a36;
+}
+
+input[type="range"] {
+	-webkit-appearance: none;
+	width: 100%;
+	max-width: 400px;
+	height: 6px;
+	border-radius: 3px;
+	background: #231a36;
+	outline: none;
+	margin: 1rem 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	background: #231a36;
+	border: 2px solid #ababab;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+	transform: scale(1.1);
+}
+
+.controls {
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+	margin-top: 2rem;
+}
+
+.control-btn {
+	font-family: "Playfair Display", serif;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.8rem 2rem;
+	border: 2px solid #231a36;
+	border-radius: 2px;
+	font-size: 1.2rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	box-shadow: 3px 3px 0 #231a36;
+}
+
+.play-btn {
+	background: #231a36;
+	color: #ababab;
+}
+
+.play-btn:hover:not(:disabled) {
+	background: #231a36;
+	transform: translate(-2px, -2px);
+	box-shadow: 5px 5px 0 #231a36;
+}
+
+.play-btn:disabled {
+	background: #ababab;
+	border-color: #ababab;
+	color: #231a36;
+	cursor: not-allowed;
+	box-shadow: none;
+}
+
+.reset-btn {
+	background: #ababab;
+	color: #231a36;
+}
+
+.reset-btn:hover {
+	background: #ababab;
+	transform: translate(-2px, -2px);
+	box-shadow: 5px 5px 0 #231a36;
+}
+
+/* Dekoratif elementler */
+.corner-decoration {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	pointer-events: none;
+}
+
+.top-left {
+	top: 20px;
+	left: 20px;
+	border-top: 3px solid #231a36;
+	border-left: 3px solid #231a36;
+}
+
+.top-right {
+	top: 20px;
+	right: 20px;
+	border-top: 3px solid #231a36;
+	border-right: 3px solid #231a36;
+}
+
+.bottom-left {
+	bottom: 20px;
+	left: 20px;
+	border-bottom: 3px solid #231a36;
+	border-left: 3px solid #231a36;
+}
+
+.bottom-right {
+	bottom: 20px;
+	right: 20px;
+	border-bottom: 3px solid #231a36;
+	border-right: 3px solid #231a36;
+}
