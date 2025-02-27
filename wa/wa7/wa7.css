@@ -1,36 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Press+Start+2P&display=swap');
+
 body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: blanchedalmond;
+    background-color: black;
+}
+
+h1{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    font-style: normal;
+    color: white;
+    font-size: 60px;
+    transition: 1s;
+}
+
+h1:hover{
+    color: deeppink;
 }
 nav{
-    height: 50vh;
+    height: 4vh;
     display:flex;
-    flex-direction: row;
     justify-content: space-between;
-    height:20px;
-    background-color: blueviolet;
+    position: sticky;
+    width: 98vw;
+    padding: .5em;
+    background-color: hotpink;
+    transition: 0.5s;
+}
+
+nav:hover{
+    background-color: deeppink;
 }
 nav a{
-    width:10vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90vw;
+    list-style: none;
     text-align: center;
     text-decoration: none;
-    color:black;
+    font-family: "JetBrains Mono", monospace;
+    color:white;
 }
 
 
 img{
-    width:30vw;
-    height: 30vh;
+    padding-top: 50px;
+    width:40vw;
+    height: 50vh;
 }
 
 #red-ball{
-    background-color: crimson;
-    width: 20px;
-    height:20px;
+    background-color: hotpink;
+    width: 60px;
+    height:60px;
     border-radius: 50%;
     position: absolute;
     left:5vw;
-    top:0;
+    top:4vw;
+    animation-name: bounce;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#red-ball-2{
+    background-color: hotpink;
+    width: 60px;
+    height:60px;
+    border-radius: 50%;
+    position: absolute;
+    right:5vw;
+    top:4vw;
+    animation-name: bounce2;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes bounce {
+    
+    from{
+        translate: 0 0;
+    }
+    to{
+        translate: 3vw;
+    }
+}
+
+@keyframes bounce2 {
+    
+    from{
+        translate: 0 0;
+    }
+    to{
+        translate: -3vw;
+    }
 }
