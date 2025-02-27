@@ -84,19 +84,19 @@ img{
 @keyframes bounce {
     
     from{
-        translate: 0 0;
+        transform: translate(0 0);
     }
     to{
-        translate: 3vw;
+        transform: translate(3vw);
     }
 }
 
 @keyframes bounce2 {
     
     from{
-        translate: 0 0;
+        transform: translate(0 0);
     }
     to{
-        translate: -3vw;
+        transform: translate(-3vw);
     }
 }
