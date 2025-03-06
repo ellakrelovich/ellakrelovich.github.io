@@ -1,0 +1,55 @@
+/* font import */
+@import url('https://fonts.googleapis.com/css2?family=Goldman:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap');
+
+body{
+    background-color: #144d57;
+    margin: 0;
+}
+
+h1{
+    font-family: "Goldman", sans-serif;
+    font-weight: 700;
+    font-size: 55px;
+    text-align: center;
+    color: white;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+h2{
+    text-align: center;
+    background-color:#042c33;
+    color: white;
+    padding: 2vh;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    position: sticky;
+    top: 0;
+}
+
+h3{
+    color: white;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+p{
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+a{
+    color: white;
+}
+
+
