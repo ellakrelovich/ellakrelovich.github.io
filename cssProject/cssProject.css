@@ -6,6 +6,8 @@
 body{
     background-color: #144d57;
     margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 h1{
@@ -20,13 +22,11 @@ h1{
 
 h2{
     text-align: center;
-    background-color:#042c33;
     color: white;
     padding: 2vh;
     font-family: "Space Grotesk", sans-serif;
     font-optical-sizing: auto;
     font-weight: 500;
-    position: sticky;
     top: 0;
 }
 
@@ -37,6 +37,8 @@ h3{
     font-weight: 500;
     padding-left: 15px;
     padding-right: 15px;
+    text-align: center;
+    font-size: 30px;;
 }
 
 p{
@@ -48,8 +50,36 @@ p{
     padding-right: 15px;
 }
 
-a{
+nav{
+    text-align: center;
+    background-color:#042c33;
     color: white;
+    padding: 2vh;
+    font-family: "Space Grotesk", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-size: 20px;
+    position: sticky;
+    top: 0;
 }
 
+nav ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
 
+a{
+    color: white;
+    text-decoration: none;
+    transition: color 1s;
+}
+
+a:hover{
+    color: aqua;
+}
+
+#concert1{
+
+}
