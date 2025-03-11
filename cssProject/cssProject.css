@@ -85,7 +85,6 @@ body{
 }
 
 @media screen and (max-width: 400px) {
-    @media screen and (min-width: 400px){
         h1{
             font-family: "Goldman", sans-serif;
             font-weight: 700;
@@ -158,5 +157,4 @@ body{
         a:hover{
             color: aqua;
         }
-    }
 }
