@@ -4,7 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap');
 
 body{
-    background-color: #144d57;
+    background-color: #053550;
     margin: 0;
     display: flex;
     flex-direction: column;
@@ -14,11 +14,11 @@ body{
     h1{
         font-family: "Goldman", sans-serif;
         font-weight: 700;
-        font-size: 55px;
+        font-size: 80px;
         text-align: center;
         color: white;
         padding-top: 5%;
-        padding-bottom: 5%;
+        padding-bottom: 0.1px;
     }
     
     h2{
@@ -39,27 +39,40 @@ body{
         padding-left: 15px;
         padding-right: 15px;
         text-align: center;
-        font-size: 30px;;
+        font-size: 30px;
+        padding-top: 30px;
     }
     
     p{
         font-family: "Space Grotesk", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
+        font-size: 20px;
         color: white;
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-top: 35px;
+        padding-bottom: 35px;
+        border-radius: 25px;
+        border: 2px solid white;
+        margin: auto;
+        width: 75%;
+        transition: background-color 1s;
+    }
+
+    p:hover{
+        background-color: #011a29;
     }
     
     nav{
         text-align: center;
-        background-color:#042c33;
+        background-color:#011a29;
         color: white;
         padding: 0.2px;
         font-family: "Space Grotesk", sans-serif;
         font-optical-sizing: auto;
         font-weight: 500;
-        font-size: 20px;
+        font-size: 30px;
         position: sticky;
         top: 0;
     }
@@ -70,7 +83,7 @@ body{
         justify-content: space-around;
         align-items: center;
         margin: 0;
-        padding: 0;
+        padding: 10px;
     }
     
     a{
@@ -80,7 +93,14 @@ body{
     }
     
     a:hover{
-        color: aqua;
+        color: #15a0f1;
+    }
+
+    .textImage{
+        background-image: url(spacePhoto.jpeg);
+        background-clip: text;
+        color: transparent;
+        -webkit-text-stroke: 3px white;
     }
 }
 
