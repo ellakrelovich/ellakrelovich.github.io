@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICA 10</title>
+    <style>
+        .circle {
+        height: 25px;
+        width: 25px;
+        background-color: blueviolet;
+        border-radius: 50%;
+        display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1 class = "heading">This is a circle - click it I dare you! Then click the button when you're done!</h1>
+    <div class="circle"></div>
+    <button>I am a button</button>
+    <script>
+
+        let circle = document.querySelector('.circle');
+        circle.addEventListener('click', changeSize);
+
+        function changeSize() {
+            circle.style = "height: 200px; width: 200px; background-color: green; border: 10px solid darkgreen";
+
+        }
+
+        let btn = document.querySelector('button');
+        btn.addEventListener('click', updateName);
+
+        function updateName() {
+            let heading = document.querySelector('.heading');
+            heading.textContent = 'Ha you fell for my Trick!';
+            heading.style = "color: red";
+        }
+    </script>
+</body>
+</html>
