@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title> 
+    <!-- put an external js file here -->
+</head>
+<body>
+    <h1 class="heading">Hello</h1>
+
+    <!-- Ensures this is the last thing loaded -->
+    <script>
+        // var let const
+        const header = document.querySelector('.heading');
+        // header.addEventListener('click', changeColor('red'));
+        header.addEventListener('click', function(color) {
+            header.textContent = color; 
+        });
+
+        function changeColor(color) {
+            header.textContent = color;
+
+        }
+
+        var x = 0; 
+        for (let i = 0; i < 10; i++){
+
+            if (x == 2) {
+                console.log("X is 2");
+                x = 0;
+            }
+            else if (x == 0) {
+                console.log("X is 0");
+                x = 1;
+            }
+            else {
+                console.log("X is 1");
+                x = 2; 
+            }
+        }
+        let y = 10;
+        while (y>0) {
+            console.log(y);
+            y-=1;
+        }
+        console.log("The loop is done");
+        
+
+    </script>
+</body>
+</html>
