@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
 		},
 		17: {
 			colors: ["#e2a9ff", "#c840ff"],
-			size: 30,
-			petals: 6,
+			size: 40,
+			petals: 15,
 			type: "type5",
 			center: { color: "#ffdf00", size: 10 }
 		}
@@ -48,25 +48,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	const leafTypes = [
 		{
-			radius: "0 100% 50% 50%",
+			radius: "0 100% 55% 50%",
 			gradient: "linear-gradient(135deg, #3a8029, #5cad4a)",
 			veinCount: 3,
 			veinAngle: -5
 		},
 		{
-			radius: "0 70% 0 50%",
+			radius: "0 70% 0 59%",
 			gradient: "linear-gradient(135deg, #4a9e35, #65c143)",
 			veinCount: 5,
 			veinAngle: -15
 		},
 		{
-			radius: "50% 100% 50% 30%",
+			radius: "30% 100% 50% 30%",
 			gradient: "linear-gradient(135deg, #2e5d20, #4a9e35)",
 			veinCount: 4,
 			veinAngle: 0
 		},
 		{
-			radius: "10% 90% 20% 80%",
+			radius: "10% 90% 20% 90%",
 			gradient: "linear-gradient(135deg, #3a8029, #65c143)",
 			veinCount: 6,
 			veinAngle: -10
