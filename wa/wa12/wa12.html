@@ -18,35 +18,61 @@
           <button type="button" id="js-new-quote" class="new-quote button">
             Generate an Inspirational Quote!
           </button>
-          </section>
+          <!-- <a class="answer button" id="js-tweet" target="_blank" rel="noreferrer">Show me the answer!</a> -->
+        </section>
+
+        <p>I added a brief loading screen to my javascript code. When looking for a wait function for JS I found that 
+            there is only a setTimeout function. So, when the button is clicked, it runs the loading function I created. 
+            This function changes the quotes text content and then uses setTimeout to run getQuote after one second. 
+        </p>
+        
       </div>
+      
       <script>
-        var btn = document.querySelector('#js-new-quote').addEventListener('click', getQuote);
-        var endpoint = "https://zenquotes.io/api/random";
-        
-        async function getQuote(){
-            try {
-                const response = await fetch(endpoint);
-                if (!response.ok){
-                    throw Error(response.statusText);
-                }
+        // this api throws cors errors so i had to run it through a different api to get the content
+        const endpoint = "https://api.allorigins.win/get?url=" + encodeURIComponent("https://zenquotes.io/api/random");
+      
+        document.querySelector('#js-new-quote').addEventListener('click', loading);
 
-                const json = await response.json();
-                //console.log(json);
-                displayQuote(json[0]);
-
-            } catch(err) {
-                console.log(err);
-                alert("Fail");
-            }
-        }
-        
-        function displayQuote(quote){
+        function loading(){
             const quoteText = document.querySelector('#js-quote-text');
-            quoteText.textContent = quote;
+            const quoteAuthor = document.querySelector('#js-answer-text');
+
+            quoteText.textContent = "Generating a beautiful quote for you!";
+            quoteAuthor.textContent = "";
+
+            setTimeout(getQuote, 1000)
         }
-
-
+      
+        async function getQuote() {
+          try {
+            const response = await fetch(endpoint + "&t=" + new Date().getTime()); // I had to this to make sure it was random each time
+      
+            if (!response.ok) {
+              throw new Error(response.statusText);
+            }
+      
+            const data = await response.json();
+            const quoteArray = JSON.parse(data.contents); 
+            const quote = quoteArray[0];
+      
+            displayQuote(quote);
+          } catch (err) {
+            console.error(err);
+            alert("Fail.");
+          }
+        }
+      
+        function displayQuote(quote) {
+          const quoteText = document.querySelector('#js-quote-text');
+          const quoteAuthor = document.querySelector('#js-answer-text');
+      
+          quoteText.textContent = `"${quote.q}"`;
+          quoteAuthor.textContent = `— ${quote.a}`;
+        }
+      
+        // Optional: Load a quote when page loads
+        getQuote();
       </script>
 </body>
 </html>
