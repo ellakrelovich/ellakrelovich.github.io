@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        const companyJSON = 'wa13.json';
+
+        async function fetchPeople(companyJSON){
+            try {
+                let response = await fetch(companyJSON);
+                let data = await response.json();
+                if(!response.ok){
+                    throw Error(response.statusText);
+                }
+
+                let employees = JSON.parse(JSON.stringify(data.companyInfo.employees));
+                console.log("Problem 1");
+                console.log(employees);
+                
+                let companyInfo = JSON.parse(JSON.stringify(data.companyInfo));
+
+                console.log("Problem 2");
+                console.log(companyInfo);
+
+                let newEmployee = {"firstName": "Anna", "department": "Tech", "designation": "Executive", "salary": 25600, "raiseEligble": false};
+                data.companyInfo.employees.push(newEmployee);
+
+                employees = JSON.parse(JSON.stringify(data.companyInfo.employees));
+                companyInfo = JSON.parse(JSON.stringify(data.companyInfo));
+                console.log("Problem 3");
+                console.log(employees);
+
+                let totalSalary = 0;
+                for(let employee of employees){
+                    totalSalary += employee.salary;
+                }
+
+                console.log("Problem 4");
+                console.log("$" + totalSalary);
+
+                for (let employee of data.companyInfo.employees) {
+                if (employee.raiseEligible === true) {
+                    employee.salary *= 1.1;
+                    employee.raiseEligible = false;
+                }
+            }
+                console.log("Problem 5 - After raises");
+                console.log(data.companyInfo.employees);
+            }
+            catch (error) {
+                console.error('error fetching json data', error);
+            }
+        }
+
+        fetchPeople(companyJSON);
+    </script>
+</body>
+</html>
