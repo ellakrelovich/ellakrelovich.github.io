@@ -51,6 +51,18 @@
             }
                 console.log("Problem 5 - After raises");
                 console.log(data.companyInfo.employees);
+
+                for (let employee of data.companyInfo.employees){
+                    if (employee.firstName == "Anna" || employee.firstName == "Sam"){
+                        employee.wfh = true;
+                    }
+                    else{
+                        employee.wfh = false;
+                    }
+                }
+
+                console.log("Problem 6 - you may have to click the dropdown button to see the wfh property");
+                console.log(data.companyInfo.employees);
             }
             catch (error) {
                 console.error('error fetching json data', error);
