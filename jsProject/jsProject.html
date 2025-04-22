@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p class="num1"></p>
+    <p class="num2"></p>
+    <p class="num3"></p>
+    <p class="num4"></p>
+    <p class="num5"></p>
+    <p class="num6"></p>
+    <p class="num7"></p>
+    <p class="num8"></p>
+    <p class="num9"></p>
+    <p class="num10"></p>
+
+    <button class="roll">Roll Again</button>
+    
+    <script>
+        
+        // create class to make die creation better
+        class Die {
+            constructor(color, number, selected){
+                this.color = color;
+                this.number = number;
+                this.selected = selected;
+            }
+        }
+
+        // generate random number between 0 and 9
+        function getRandomNumber(){
+            return Math.floor(Math.random() * 10);
+        }
+
+        // declare initial set of dice
+
+        let diceSet = [die1 = new Die("#2d5c50", getRandomNumber(), false),
+        die2 = new Die("#2d5a5c", getRandomNumber(), false),
+        die3 = new Die("#2d485c", getRandomNumber(), false),
+        die4 = new Die("#2d365c", getRandomNumber(), false),
+        die5 = new Die("#382d5c", getRandomNumber(), false),
+        die6 = new Die("#492d5c", getRandomNumber(), false),
+        die7 = new Die("#592d5c", getRandomNumber(), false),
+        die8 = new Die("#5c2d4e", getRandomNumber(), false),
+        die9 = new Die("#5c2d45", getRandomNumber(), false),
+        die10 = new Die("#5c2d3d", getRandomNumber(), false)];
+
+            // create array of selectors for each number
+        let numberSelectors = [
+        num1 = document.querySelector('.num1'),
+        num2 = document.querySelector('.num2'),
+        num3 = document.querySelector('.num3'),
+        num4 = document.querySelector('.num4'),
+        num5 = document.querySelector('.num5'),
+        num6 = document.querySelector('.num6'),
+        num7 = document.querySelector('.num7'),
+        num8 = document.querySelector('.num8'),
+        num9 = document.querySelector('.num9'),
+        num10 = document.querySelector('.num10')]
+
+        for(let i = 0; i < 10; i++){
+            numberSelectors[i].textContent = diceSet[i].number;
+        }
+
+        // roll again button
+        const rollAgain = document.querySelector('.roll');
+        rollAgain.addEventListener('click', roll);
+        // roll again function
+
+        function roll(){
+            for(die of diceSet){
+                if(die.selected == false){
+                    die.number = getRandomNumber();
+                }
+            
+            for(let i = 0; i < 10; i++){
+                    numberSelectors[i].textContent = diceSet[i].number;
+                }
+            }
+        }
+    
+    </script>
+</body>
+</html>
