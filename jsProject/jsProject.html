@@ -3,19 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>DND Yahtzee Phone # Picker</title>
+    <link rel="stylesheet" href="jsProject.css">
 </head>
 <body>
-    <p class="num1"></p>
-    <p class="num2"></p>
-    <p class="num3"></p>
-    <p class="num4"></p>
-    <p class="num5"></p>
-    <p class="num6"></p>
-    <p class="num7"></p>
-    <p class="num8"></p>
-    <p class="num9"></p>
-    <p class="num10"></p>
+    <div class="flex-container">
+        <div class="dice1">
+            <p class="num1"></p>
+            <div class="shape"></div>
+        </div>
+
+        <div class="dice2">
+            <p class="num2"></p>
+        </div>
+
+        <div class="dice3">
+            <p class="num3"></p>
+        </div>
+
+        <div class="dice4">
+            <p class="num4"></p>
+        </div>
+
+        <div class="dice5">
+            <p class="num5"></p>
+        </div>
+
+        <div class="dice6">
+            <p class="num6"></p>
+        </div>
+
+        <div class="dice7">
+            <p class="num7"></p>
+        </div>
+
+        <div class="dice8">
+            <p class="num8"></p>
+        </div>
+
+        <div class="dice9">
+            <p class="num9"></p>
+        </div>
+
+        <div class="dice10">
+            <p class="num10"></p>
+        </div>
+    </div>
 
     <button class="roll">Roll Again</button>
     
@@ -61,6 +94,7 @@
         num9 = document.querySelector('.num9'),
         num10 = document.querySelector('.num10')]
 
+
         for(let i = 0; i < 10; i++){
             numberSelectors[i].textContent = diceSet[i].number;
         }
@@ -81,7 +115,27 @@
                 }
             }
         }
+
+        function select(die){
+            if(die.selected == false){
+                die.selected = true;
+            }
+            else{
+                die.selected = false;
+            }
+        }
     
+        dice1 = document.querySelector('.dice1').addEventListener('click', () => select(diceSet[0]));
+        dice2 = document.querySelector('.dice2').addEventListener('click', () => select(diceSet[1]));
+        dice3 = document.querySelector('.dice3').addEventListener('click', () => select(diceSet[2]));
+        dice4 = document.querySelector('.dice4').addEventListener('click', () => select(diceSet[3]));
+        dice5 = document.querySelector('.dice5').addEventListener('click', () => select(diceSet[4]));
+        dice6 = document.querySelector('.dice6').addEventListener('click', () => select(diceSet[5]));
+        dice7 = document.querySelector('.dice7').addEventListener('click', () => select(diceSet[6]));
+        dice8 = document.querySelector('.dice8').addEventListener('click', () => select(diceSet[7]));
+        dice9 = document.querySelector('.dice9').addEventListener('click', () => select(diceSet[8]));
+        dice10 = document.querySelector('.dice10').addEventListener('click', () => select(diceSet[9]));
+
     </script>
 </body>
 </html>

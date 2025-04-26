@@ -1,0 +1,22 @@
+body{
+    background-color: blanchedalmond;
+}
+
+.dice1, .dice2, .dice3, .dice4, .dice5,.dice6, .dice7, .dice8, .dice9, .dice10{
+    background:#2d5a5c;
+    border-radius:20%;
+    height: 50px;
+    width: 50px;
+    text-align:center;
+    color: white;
+    padding:10px 0;
+    font-size:16px;
+
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 10px;
+}
+
+.flex-container{
+    display: flex;
+}
