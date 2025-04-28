@@ -1,22 +1,149 @@
-body{
-    background-color: blanchedalmond;
+body {
+    font-family: 'MedievalSharp', cursive;
+    color: #fff;
+    text-align: center;
+    padding: 2rem;
+    background-color: #1d1425;
 }
 
-.dice1, .dice2, .dice3, .dice4, .dice5,.dice6, .dice7, .dice8, .dice9, .dice10{
-    background:#2d5a5c;
-    border-radius:20%;
-    height: 50px;
-    width: 50px;
-    text-align:center;
-    color: white;
-    padding:10px 0;
-    font-size:16px;
-
-    padding-left: 10px;
-    padding-right: 10px;
-    border: 10px;
+h1 {
+    font-family: 'MedievalSharp', cursive;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    color: #c484e2;
+    text-shadow: 2px 2px #000;
 }
 
-.flex-container{
+.dice-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
+
+.dice {
+    width: 80px;
+    height: 80px;
+    background-color: #c484e2;
+    border: 3px solid #802264;
+    color: #802264;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+.dice:hover {
+    transform: scale(1.1);
+}
+
+.dice.selected {
+    background-color: #FF8800;
+    border: #c4560d;
+    color: #c4560d;
+    box-shadow: 0 0 15px 5px rgba(255, 136, 0, 0.7);
+}
+
+.dice p {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.roll, .submit {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    background-color: #802264;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Permanent Marker', cursive;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.roll:hover {
+    background-color: #8b3a62;
+    transform: scale(1.1);
+}
+
+/* Medieval Scroll Popup */
+.scroll-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.scroll-content {
+    background: #f9f0d1;
+    border: 5px solid #a67c52;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    font-family: 'MedievalSharp', cursive;
+    color: #4b2e0f;
+    box-shadow: 0 0 20px 10px rgba(255, 228, 181, 0.5);
+    text-align: center;
+    position: relative;
+}
+
+.scroll-content h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #8b4513;
+}
+
+.scroll-content p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+#close-scroll {
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    background-color: #a67c52;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-family: 'Permanent Marker', cursive;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+#close-scroll:hover {
+    background-color: #8b5a2b;
+    transform: scale(1.1);
+}
+
+#submit-popup button {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    background-color: #a67c52;
+    color: #fff;
+    border: 2px solid #8b4513;
+    border-radius: 8px;
+    margin: 0.5rem;
+    cursor: pointer;
+    font-family: 'Permanent Marker', cursive;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+#submit-popup button:hover {
+    background-color: #8b4513;
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #ffcc00;
+}
+
+

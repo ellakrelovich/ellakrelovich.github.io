@@ -7,50 +7,42 @@
     <link rel="stylesheet" href="jsProject.css">
 </head>
 <body>
-    <div class="flex-container">
-        <div class="dice1">
-            <p class="num1"></p>
-            <div class="shape"></div>
-        </div>
 
-        <div class="dice2">
-            <p class="num2"></p>
-        </div>
+    <img src="dragonIcon.png" alt="a round dragon icon">
+    <h1>DND Yahtzee Phone # Picker</h1>
 
-        <div class="dice3">
-            <p class="num3"></p>
-        </div>
-
-        <div class="dice4">
-            <p class="num4"></p>
-        </div>
-
-        <div class="dice5">
-            <p class="num5"></p>
-        </div>
-
-        <div class="dice6">
-            <p class="num6"></p>
-        </div>
-
-        <div class="dice7">
-            <p class="num7"></p>
-        </div>
-
-        <div class="dice8">
-            <p class="num8"></p>
-        </div>
-
-        <div class="dice9">
-            <p class="num9"></p>
-        </div>
-
-        <div class="dice10">
-            <p class="num10"></p>
+    <div id="scroll-popup" class="scroll-popup">
+        <div class="scroll-content">
+            <h2>Welcome, Friend!</h2>
+            <p>Roll the mystical dice to select your phone number. Select any dice you wish to keep before rolling again!</p>
+            <button id="close-scroll">Begin</button>
         </div>
     </div>
 
+    <div id="submit-popup" class="scroll-popup" style="display: none;">
+        <div class="scroll-content">
+            <h2>Your Fated Number!</h2>
+            <p id="final-number"></p>
+            <button id="confirm-btn">Confirm</button>
+            <button id="restart-btn">Restart</button>
+        </div>
+    </div>
+
+    <div class="dice-container">
+        <div class="dice"><p class="num1"></p></div>
+        <div class="dice"><p class="num2"></p></div>
+        <div class="dice"><p class="num3"></p></div>
+        <div class="dice"><p class="num4"></p></div>
+        <div class="dice"><p class="num5"></p></div>
+        <div class="dice"><p class="num6"></p></div>
+        <div class="dice"><p class="num7"></p></div>
+        <div class="dice"><p class="num8"></p></div>
+        <div class="dice"><p class="num9"></p></div>
+        <div class="dice"><p class="num10"></p></div>
+    </div>
+
     <button class="roll">Roll Again</button>
+    <button class="submit">Submit</button>
     
     <script>
         
@@ -116,25 +108,59 @@
             }
         }
 
-        function select(die){
-            if(die.selected == false){
-                die.selected = true;
-            }
-            else{
-                die.selected = false;
-            }
+        function select(die, index) {
+            die.selected = !die.selected;
+            const dieDiv = document.querySelectorAll('.dice')[index];
+            dieDiv.classList.toggle('selected', die.selected);
         }
-    
-        dice1 = document.querySelector('.dice1').addEventListener('click', () => select(diceSet[0]));
-        dice2 = document.querySelector('.dice2').addEventListener('click', () => select(diceSet[1]));
-        dice3 = document.querySelector('.dice3').addEventListener('click', () => select(diceSet[2]));
-        dice4 = document.querySelector('.dice4').addEventListener('click', () => select(diceSet[3]));
-        dice5 = document.querySelector('.dice5').addEventListener('click', () => select(diceSet[4]));
-        dice6 = document.querySelector('.dice6').addEventListener('click', () => select(diceSet[5]));
-        dice7 = document.querySelector('.dice7').addEventListener('click', () => select(diceSet[6]));
-        dice8 = document.querySelector('.dice8').addEventListener('click', () => select(diceSet[7]));
-        dice9 = document.querySelector('.dice9').addEventListener('click', () => select(diceSet[8]));
-        dice10 = document.querySelector('.dice10').addEventListener('click', () => select(diceSet[9]));
+
+        document.querySelectorAll('.dice').forEach((dieDiv, index) => {
+            dieDiv.addEventListener('click', () => select(diceSet[index], index));
+        });
+        
+        // Scroll popup handling
+        const scrollPopup = document.getElementById('scroll-popup');
+        const closeScrollBtn = document.getElementById('close-scroll');
+
+        // Show popup on page load
+        window.onload = function() {
+            scrollPopup.style.display = 'flex';
+        };
+
+        // Close popup when clicking "Begin"
+        closeScrollBtn.addEventListener('click', () => {
+            scrollPopup.style.display = 'none';
+        });
+
+        // Submit popup handling
+        const submitPopup = document.getElementById('submit-popup');
+        const finalNumber = document.getElementById('final-number');
+        const confirmBtn = document.getElementById('confirm-btn');
+        const restartBtn = document.getElementById('restart-btn');
+        const finalizeBtn = document.querySelector('.submit');
+
+        // When "Finalize" is clicked
+        finalizeBtn.addEventListener('click', () => {
+            // Build the phone number
+            let phoneNumber = '';
+            for (let die of diceSet) {
+                phoneNumber += die.number;
+            }
+
+            finalNumber.textContent = `(${phoneNumber.substring(0,3)}) ${phoneNumber.substring(3,6)}-${phoneNumber.substring(6)}`;
+            submitPopup.style.display = 'flex';
+        });
+
+        // When "Confirm" is clicked
+        confirmBtn.addEventListener('click', () => {
+            alert('Your legendary number has been sealed! 📜');
+            submitPopup.style.display = 'none';
+        });
+
+        // When "Restart" is clicked
+        restartBtn.addEventListener('click', () => {
+            location.reload(); // reloads the page
+        });
 
     </script>
 </body>
