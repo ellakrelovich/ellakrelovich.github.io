@@ -1,4 +1,4 @@
-body {
+body { 
     font-family: 'MedievalSharp', cursive;
     color: #fff;
     text-align: center;
@@ -7,13 +7,13 @@ body {
 }
 
 h1 {
-    font-family: 'MedievalSharp', cursive;
     font-size: 3rem;
     margin-bottom: 2rem;
     color: #c484e2;
     text-shadow: 2px 2px #000;
 }
 
+/* Dice Container */
 .dice-container {
     display: flex;
     flex-wrap: wrap;
@@ -22,38 +22,81 @@ h1 {
     margin-bottom: 2rem;
 }
 
-.dice {
+.dice-wrapper {
+    position: relative;
     width: 80px;
     height: 80px;
-    background-color: #c484e2;
-    border: 3px solid #802264;
-    color: #802264;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: transform 0.3s, opacity 0.3s;
 }
+
+.dice {
+        position: relative;
+        z-index: 1;
+        width: 80px;
+        height: 80px;
+        background-color: #c484e2;
+        color: #802264;
+        clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        font-weight: bold;
+        outline: 3px solid #802264; /* replaces border */
+        transition: transform 0.3s, box-shadow 0.3s;
+        font-family: 'MedievalSharp', cursive;
+        text-shadow: 1px 1px #000;
+        background-clip: padding-box;
+    }
+    
+
 
 .dice:hover {
     transform: scale(1.1);
+    box-shadow: 0 0 12px 4px rgba(255, 204, 0, 0.7);
 }
 
-.dice.selected {
+/* Glowing selection effect beneath the dice */
+.dice-wrapper.selected::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    right: -30%;
+    bottom: -30%;
+    background: radial-gradient(circle, rgba(255, 136, 0, 0.6) 0%, transparent 70%);
+    border-radius: 50%;
+    filter: blur(12px);
+    z-index: 1;
+    pointer-events: none;
+    animation: pulse-glow 1.2s infinite ease-in-out;
+}
+
+/* Optional animated pulse */
+@keyframes pulse-glow {
+    0% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0.7;
+        transform: scale(1);
+    }
+}
+
+/* Change die appearance when selected */
+.dice-wrapper.selected .dice {
     background-color: #FF8800;
-    border: #c4560d;
-    color: #c4560d;
-    box-shadow: 0 0 15px 5px rgba(255, 136, 0, 0.7);
+    border-color: #c4560d;
+    color: #fff;
 }
 
-.dice p {
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 0;
-}
 
-.roll, .submit {
+/* Buttons */
+button {
     padding: 1rem 2rem;
     font-size: 1.5rem;
     background-color: #802264;
@@ -65,10 +108,14 @@ h1 {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-.roll:hover {
-    background-color: #8b3a62;
+button:hover {
     transform: scale(1.1);
 }
+
+.roll:hover, .submit:hover {
+    background-color: #8b3a62;
+}
+
 
 /* Medieval Scroll Popup */
 .scroll-popup {
@@ -99,7 +146,6 @@ h1 {
 }
 
 .scroll-content h2 {
-    font-family: 'Permanent Marker', cursive;
     font-size: 2rem;
     margin-bottom: 1rem;
     color: #8b4513;
@@ -118,7 +164,6 @@ h1 {
     border: none;
     border-radius: 12px;
     cursor: pointer;
-    font-family: 'Permanent Marker', cursive;
     transition: background-color 0.3s, transform 0.3s;
 }
 
@@ -136,7 +181,6 @@ h1 {
     border-radius: 8px;
     margin: 0.5rem;
     cursor: pointer;
-    font-family: 'Permanent Marker', cursive;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
@@ -145,5 +189,3 @@ h1 {
     transform: scale(1.05);
     box-shadow: 0 0 10px #ffcc00;
 }
-
-

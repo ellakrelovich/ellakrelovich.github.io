@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DND Yahtzee Phone # Picker</title>
+    <title>Magic Yahtzee Phone Number Picker</title>
     <link rel="stylesheet" href="jsProject.css">
 </head>
 <body>
 
-    <img src="dragonIcon1.png" alt="a round dragon icon">
-    <h1>DND Yahtzee Phone # Picker</h1>
+    <img src="dragonicon1.png" alt="a round dragon icon">
+    <h1>Magic Yahtzee Phone Number Picker</h1>
 
     <div id="scroll-popup" class="scroll-popup">
         <div class="scroll-content">
             <h2>Welcome, Friend!</h2>
-            <p>Roll the mystical dice to select your phone number. Select any dice you wish to keep before rolling again!</p>
+            <p>Roll the mystical dice to select your phone number. Select any dice you wish to keep before rolling again! 
+                You have three turns before the computer goes. <br><br>
+                The computer will have three turns and a 10% chance each turn to 
+                change one of your selected numbers. Be wary of it's tricks. 
+            </p>
             <button id="close-scroll">Begin</button>
         </div>
     </div>
@@ -29,139 +33,178 @@
     </div>
 
     <div class="dice-container">
-        <div class="dice"><p class="num1"></p></div>
-        <div class="dice"><p class="num2"></p></div>
-        <div class="dice"><p class="num3"></p></div>
-        <div class="dice"><p class="num4"></p></div>
-        <div class="dice"><p class="num5"></p></div>
-        <div class="dice"><p class="num6"></p></div>
-        <div class="dice"><p class="num7"></p></div>
-        <div class="dice"><p class="num8"></p></div>
-        <div class="dice"><p class="num9"></p></div>
-        <div class="dice"><p class="num10"></p></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num1"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num2"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num3"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num4"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num5"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num6"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num7"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num8"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num9"></p></div></div>
+        <div class="dice-wrapper"><div class="dice"><p class="num10"></p></div></div>
     </div>
 
     <button class="roll">Roll Again</button>
     <button class="submit">Submit</button>
-    
+
     <script>
-        
-        // create class to make die creation better
         class Die {
-            constructor(color, number, selected){
+            constructor(color, number, selected) {
                 this.color = color;
                 this.number = number;
                 this.selected = selected;
             }
         }
 
-        // generate random number between 0 and 9
-        function getRandomNumber(){
+        const maxUserRolls = 3;
+        const maxComputerTurns = 3;
+        let userRolls = 0;
+        let userTurns = 0;
+        let gameLocked = false;
+
+        function getRandomNumber() {
             return Math.floor(Math.random() * 10);
         }
 
-        // declare initial set of dice
+        let diceSet = [
+            new Die("#2d5c50", getRandomNumber(), false),
+            new Die("#2d5a5c", getRandomNumber(), false),
+            new Die("#2d485c", getRandomNumber(), false),
+            new Die("#2d365c", getRandomNumber(), false),
+            new Die("#382d5c", getRandomNumber(), false),
+            new Die("#492d5c", getRandomNumber(), false),
+            new Die("#592d5c", getRandomNumber(), false),
+            new Die("#5c2d4e", getRandomNumber(), false),
+            new Die("#5c2d45", getRandomNumber(), false),
+            new Die("#5c2d3d", getRandomNumber(), false)
+        ];
 
-        let diceSet = [die1 = new Die("#2d5c50", getRandomNumber(), false),
-        die2 = new Die("#2d5a5c", getRandomNumber(), false),
-        die3 = new Die("#2d485c", getRandomNumber(), false),
-        die4 = new Die("#2d365c", getRandomNumber(), false),
-        die5 = new Die("#382d5c", getRandomNumber(), false),
-        die6 = new Die("#492d5c", getRandomNumber(), false),
-        die7 = new Die("#592d5c", getRandomNumber(), false),
-        die8 = new Die("#5c2d4e", getRandomNumber(), false),
-        die9 = new Die("#5c2d45", getRandomNumber(), false),
-        die10 = new Die("#5c2d3d", getRandomNumber(), false)];
+        let numberSelectors = Array.from({ length: 10 }, (_, i) => document.querySelector(`.num${i + 1}`));
 
-            // create array of selectors for each number
-        let numberSelectors = [
-        num1 = document.querySelector('.num1'),
-        num2 = document.querySelector('.num2'),
-        num3 = document.querySelector('.num3'),
-        num4 = document.querySelector('.num4'),
-        num5 = document.querySelector('.num5'),
-        num6 = document.querySelector('.num6'),
-        num7 = document.querySelector('.num7'),
-        num8 = document.querySelector('.num8'),
-        num9 = document.querySelector('.num9'),
-        num10 = document.querySelector('.num10')]
-
-
-        for(let i = 0; i < 10; i++){
-            numberSelectors[i].textContent = diceSet[i].number;
+        function updateDiceDisplay() {
+            for (let i = 0; i < 10; i++) {
+                numberSelectors[i].textContent = diceSet[i].number;
+            }
         }
 
-        // roll again button
-        const rollAgain = document.querySelector('.roll');
-        rollAgain.addEventListener('click', roll);
-        // roll again function
+        updateDiceDisplay();
 
-        function roll(){
-            for(die of diceSet){
-                if(die.selected == false){
+        function roll() {
+            if (gameLocked || userRolls >= maxUserRolls) return;
+
+            for (let die of diceSet) {
+                if (!die.selected) {
                     die.number = getRandomNumber();
                 }
-            
-            for(let i = 0; i < 10; i++){
-                    numberSelectors[i].textContent = diceSet[i].number;
-                }
+            }
+
+            updateDiceDisplay();
+            userRolls++;
+
+            if (userRolls >= maxUserRolls) {
+                gameLocked = true;
+                document.querySelector(".roll").disabled = true;
+                computerTurn();
             }
         }
 
         function select(die, index) {
+            if (gameLocked) return;
             die.selected = !die.selected;
-            const dieDiv = document.querySelectorAll('.dice')[index];
-            dieDiv.classList.toggle('selected', die.selected);
+            document.querySelectorAll('.dice-wrapper')[index].classList.toggle('selected', die.selected);
         }
 
         document.querySelectorAll('.dice').forEach((dieDiv, index) => {
             dieDiv.addEventListener('click', () => select(diceSet[index], index));
         });
-        
-        // Scroll popup handling
+
+        document.querySelector('.roll').addEventListener('click', roll);
+
+        function computerTurn() {
+            let computerTries = 0;
+
+            let interval = setInterval(() => {
+                if (computerTries >= maxComputerTurns) {
+                    clearInterval(interval);
+                    gameLocked = false;
+                    userRolls = 0;
+                    document.querySelector(".roll").disabled = false;
+                    return;
+                }
+
+                diceSet.forEach(die => {
+                    if (die.selected && Math.random() < 0.1) {
+                        die.number = getRandomNumber();
+                    }
+                });
+
+                updateDiceDisplay();
+                computerTries++;
+            }, 800);
+        }
+
         const scrollPopup = document.getElementById('scroll-popup');
         const closeScrollBtn = document.getElementById('close-scroll');
 
-        // Show popup on page load
-        window.onload = function() {
+        window.onload = function () {
             scrollPopup.style.display = 'flex';
         };
 
-        // Close popup when clicking "Begin"
         closeScrollBtn.addEventListener('click', () => {
             scrollPopup.style.display = 'none';
         });
 
-        // Submit popup handling
         const submitPopup = document.getElementById('submit-popup');
         const finalNumber = document.getElementById('final-number');
         const confirmBtn = document.getElementById('confirm-btn');
         const restartBtn = document.getElementById('restart-btn');
         const finalizeBtn = document.querySelector('.submit');
 
-        // When "Finalize" is clicked
-        finalizeBtn.addEventListener('click', () => {
-            // Build the phone number
-            let phoneNumber = '';
-            for (let die of diceSet) {
-                phoneNumber += die.number;
-            }
 
-            finalNumber.textContent = `(${phoneNumber.substring(0,3)}) ${phoneNumber.substring(3,6)}-${phoneNumber.substring(6)}`;
+        finalizeBtn.addEventListener('click', () => {
+            let phoneNumber = diceSet.map(die => die.number).join('');
+            finalNumber.textContent = `(${phoneNumber.substring(0, 3)}) ${phoneNumber.substring(3, 6)}-${phoneNumber.substring(6)}`;
             submitPopup.style.display = 'flex';
         });
 
-        // When "Confirm" is clicked
         confirmBtn.addEventListener('click', () => {
             alert('Your legendary number has been sealed! 📜');
+            resetGame();
             submitPopup.style.display = 'none';
         });
 
-        // When "Restart" is clicked
         restartBtn.addEventListener('click', () => {
-            location.reload(); // reloads the page
+            location.reload();
         });
 
+        function resetGame() {
+    // Reset dice numbers and selection state
+    diceSet.forEach(die => {
+        die.number = getRandomNumber();  // Re-randomize the number
+        die.selected = false;  // Deselect all dice
+    });
+
+    // Reset display of dice numbers
+    updateDiceDisplay();
+
+    // Reset game state variables
+    userRolls = 0;
+    userTurns = 0;
+    gameLocked = false;
+
+    // Enable the roll button and disable submit button
+    document.querySelector(".roll").disabled = false;
+    document.querySelector(".submit").disabled = true;
+
+    // Ensure no dice are selected
+    document.querySelectorAll('.dice-wrapper').forEach(wrapper => {
+        wrapper.classList.remove('selected');
+    });
+
+    // Show the scroll popup again
+    document.getElementById('scroll-popup').style.display = 'flex';
+}
     </script>
 </body>
 </html>
